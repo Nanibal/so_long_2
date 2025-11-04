@@ -45,7 +45,7 @@ static int	has_valid_path(t_game *game)
 	while (++i < game->map_height)
 		map_cpy[i] = ft_strdup(game->map[i]);
 	reach = flood_fill(map_cpy, game->map_width, game->map_height,
-			(t_point){game->player_x, game->player_y});
+			(t_point){game->player_x, game->player_y}, game->collectable);
 	i = -1;
 	while (++i < game->map_height)
 		free(map_cpy[i]);
