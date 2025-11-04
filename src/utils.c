@@ -65,7 +65,7 @@ int	flood_fill(char **map, int width, int height, t_point pos)
 		return (collectibles && exit_found);
 	if (map[pos.y][pos.x] == 'C')
 		collectibles++;
-	if (map[pos.y][pos.x] == 'X')
+	if (map[pos.y][pos.x] == 'E')
 		exit_found++;
 	flood_fill(map, width, height, (t_point){pos.x + 1, pos.y});
 	flood_fill(map, width, height, (t_point){pos.x - 1, pos.y});

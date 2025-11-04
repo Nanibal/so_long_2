@@ -45,7 +45,7 @@ void	render_map(t_game *game)
 			mlx_put_image_to_window(game->mlx, game->win, game->floor,
 				cord[1] * TILE_SIZE, cord[0] * TILE_SIZE);
 			if (game->map[cord[0]][cord[1]] == '1')
-				mlx_put_image_to_window(game->mlx, game->win, game->floor,
+				mlx_put_image_to_window(game->mlx, game->win, game->wall,
 					cord[1] * TILE_SIZE, cord[0] * TILE_SIZE);
 			else if (game->map[cord[0]][cord[1]] == 'C')
 				mlx_put_image_to_window(game->mlx, game->win, game->collect,
@@ -53,7 +53,7 @@ void	render_map(t_game *game)
 			else if (game->map[cord[0]][cord[1]] == 'E')
 				mlx_put_image_to_window(game->mlx, game->win, game->exit,
 					cord[1] * TILE_SIZE, cord[0] * TILE_SIZE);
-			else if (game->map[cord[0]][cord[1]] == '1')
+			else if (game->map[cord[0]][cord[1]] == 'P')
 				mlx_put_image_to_window(game->mlx, game->win, game->player,
 					cord[1] * TILE_SIZE, cord[0] * TILE_SIZE);
 		}
