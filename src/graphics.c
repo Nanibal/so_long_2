@@ -16,6 +16,29 @@ void	load_images(t_game *game)
 	int	img_size;
 
 	img_size = TILE_SIZE;
+	game->wall = mlx_xpm_file_to_image(game->mlx, "textures/wall.xpm", &img_size, &img_size);
+	if (!game->wall)
+		ft_printf("Failed to load wall.xpm\n");
+	game->floor = mlx_xpm_file_to_image(game->mlx, "textures/floor.xpm", &img_size, &img_size);
+	if (!game->floor) 
+		ft_printf("Failed to load floor.xpm\n");
+	game->player = mlx_xpm_file_to_image(game->mlx, "textures/player.xpm", &img_size, &img_size);
+	if (!game->player) 
+		ft_printf("Failed to load player.xpm\n");
+	game->collect = mlx_xpm_file_to_image(game->mlx, "textures/collectible.xpm", &img_size, &img_size);
+	if (!game->collect) 
+		ft_printf("Failed to load collectible.xpm\n");
+	game->exit = mlx_xpm_file_to_image(game->mlx, "textures/exit.xpm", &img_size, &img_size);
+	if (!game->exit) 
+		ft_printf("Failed to load exit.xpm\n");
+	if (!game->wall || !game->floor || !game->player || !game->collect || !game->exit)
+		error_exit(game, "Failed to load textures");
+}
+/* void	load_images(t_game *game)
+{
+	int	img_size;
+
+	img_size = TILE_SIZE;
 	game->wall = mlx_xpm_file_to_image(game->mlx, "textures/wall.xpm",
 			&img_size, &img_size);
 	game->floor = mlx_xpm_file_to_image(game->mlx, "textures/floor.xpm",
@@ -29,7 +52,7 @@ void	load_images(t_game *game)
 	if (!game->wall || !game->floor || !game->player
 		|| !game->collect || !game->exit)
 		error_exit(game, "Failed to load textures");
-}
+} */
 
 void	render_map(t_game *game)
 {

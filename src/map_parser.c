@@ -163,11 +163,26 @@ static void	read_map_dimensions(t_game *game, char *filename)
 	check_map_contents(game);
 	validate_map(game);
 } */
+static void	check_rectangular(t_game *game)
+{
+	int	i;
+	int	expected_width;
+
+	expected_width = game->map_width;
+	i = 0;
+	while (i < game->map_height)
+	{
+		if ((int)ft_strlen(game->map[i]) != expected_width)
+			error_exit(game, "Map is not rectangular");
+		i++;
+	}
+}
+
 void	parse_map(char *filename, t_game *game)
 {
-	int	fd;
-	int	i;
-	char *temp;
+	int		fd;
+	int		i;
+	char	*temp;
 
 	read_map_dimensions(game, filename);
 	game->map = ft_calloc(game->map_height + 1, sizeof(char *));
@@ -187,6 +202,7 @@ void	parse_map(char *filename, t_game *game)
 		i++;
 	}
 	close(fd);
+	check_rectangular(game);
 	check_map_contents(game);
 	validate_map(game);
 }

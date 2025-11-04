@@ -59,6 +59,7 @@ void	move_player(t_game *game, int dx, int dy);
 void	free_game(t_game *game);
 void	error_exit(t_game *game, char *message);
 int		close_game(t_game *game);
-int		flood_fill(char **map, int width, int height, t_point pos);
+//int		flood_fill(char **map, int width, int height, t_point pos);
+int		flood_fill(char **map, int width, int height, t_point start_pos);
 void	init_game(t_game *game, char *map);
 #endif

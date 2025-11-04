@@ -55,7 +55,38 @@ void	init_game(t_game *game, char *map)
 	game->moves = 0;
 }
 
-int	flood_fill(char **map, int width, int height, t_point pos)
+void	flood_fill_recursive(char **map, int width, int height, t_point pos,
+	int *collectibles, int *exit_found)
+{
+	if (pos.y < 0 || pos.y >= height || pos.x < 0 || pos.x >= width
+		|| map[pos.y][pos.x] == '1' || map[pos.y][pos.x] == 'X')
+		return ;
+	if (map[pos.y][pos.x] == 'C')
+		(*collectibles)++;
+	if (map[pos.y][pos.x] == 'E')
+		(*exit_found)++;
+	char original = map[pos.y][pos.x];
+	map[pos.y][pos.x] = 'X';
+	flood_fill_recursive(map, width, height, (t_point){pos.x + 1, pos.y},
+		collectibles, exit_found);
+	flood_fill_recursive(map, width, height, (t_point){pos.x - 1, pos.y},
+		collectibles, exit_found);
+	flood_fill_recursive(map, width, height, (t_point){pos.x, pos.y + 1},
+		collectibles, exit_found);
+	flood_fill_recursive(map, width, height, (t_point){pos.x, pos.y - 1},
+		collectibles, exit_found);
+	map[pos.y][pos.x] = original;
+}
+
+int	flood_fill(char **map, int width, int height, t_point start_pos)
+{
+	int	collectibles = 0;
+	int	exit_found = 0;
+	
+	flood_fill_recursive(map, width, height, start_pos, &collectibles, &exit_found);
+	return (collectibles && exit_found);
+}
+/* int	flood_fill(char **map, int width, int height, t_point pos)
 {
 	static int	collectibles = 0;
 	static int	exit_found = 0;
@@ -72,4 +103,4 @@ int	flood_fill(char **map, int width, int height, t_point pos)
 	flood_fill(map, width, height, (t_point){pos.x, pos.y + 1});
 	flood_fill(map, width, height, (t_point){pos.x, pos.y - 1});
 	return (collectibles && exit_found);
-}
+} */

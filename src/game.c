@@ -42,6 +42,41 @@ void	move_player(t_game *game, int dx, int dy)
 
 int	handle_keypress(int keycode, t_game *game)
 {
+	ft_printf("=== KEY PRESSED: %d ===\n", keycode); // DEBUG
+	
+	if (keycode == 65307) // ESC
+	{
+		ft_printf("ESC pressed, closing game...\n");
+		close_game(game);
+	}
+	else if (keycode == 119 || keycode == 65362) // W
+	{
+		ft_printf("Moving UP\n");
+		move_player(game, 0, -1);
+	}
+	else if (keycode == 115 || keycode == 65364) // S
+	{
+		ft_printf("Moving DOWN\n");
+		move_player(game, 0, 1);
+	}
+	else if (keycode == 97 || keycode == 65361) // A
+	{
+		ft_printf("Moving LEFT\n");
+		move_player(game, -1, 0);
+	}
+	else if (keycode == 100 || keycode == 65363) // D
+	{
+		ft_printf("Moving RIGHT\n");
+		move_player(game, 1, 0);
+	}
+	else
+	{
+		ft_printf("Unknown key\n");
+	}
+	return (0);
+}
+/* int	handle_keypress(int keycode, t_game *game)
+{
 	if (keycode == 53)
 		close_game(game);
 	else if (keycode == 13 || keycode == 126)
@@ -53,4 +88,4 @@ int	handle_keypress(int keycode, t_game *game)
 	else if (keycode == 2 || keycode == 124)
 		move_player(game, 1, 0);
 	return (0);
-}
+} */
