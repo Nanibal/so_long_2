@@ -41,7 +41,6 @@ static void	check_map_contents(t_game *game)
 	counts[0] = 0;
 	counts[1] = 0;
 	counts[2] = 0;
-
 	y = 0;
 	while (y < game->map_height)
 	{
@@ -69,10 +68,9 @@ static void	read_map_dimensions(t_game *game, char *filename)
 	line = get_next_line(fd);
 	if (!line)
 		error_exit(game, "Empty map file");
-	if (line[ft_strlen(line) - 1] == '\n')
-		game->map_width = ft_strlen(line) - 1;
-	else
-		game->map_width = ft_strlen(line);
+	game->map_width = ft_strlen(line);
+	if (line[game->map_width - 1] == '\n')
+		game->map_width--;
 	game->map_height = 0;
 	while (line)
 	{

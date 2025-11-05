@@ -20,17 +20,17 @@
 
 typedef struct s_game
 {
-	void	*mlx;		// Minilibx conexion
-	void	*win;		// Game window
-	char	**map;		// Map matrix
+	void	*mlx;
+	void	*win;
+	char	**map;
 	int		map_width;
 	int		map_height;
-	int		player_x;	//Player cordinates
-	int		player_y;	//Player cordinates
+	int		player_x;
+	int		player_y;
 	int		collectable;
-	int		moves;		// Moves count
-	int		exit_x;		// Exit cordinates
-	int		exit_y;		// Exit cordinates
+	int		moves;
+	int		exit_x;
+	int		exit_y;
 	void	*wall;
 	void	*floor;
 	void	*player;
@@ -42,6 +42,8 @@ typedef struct s_point
 {
 	int	x;
 	int	y;
+	int	*collectibles;
+	int	*exit_found;
 }		t_point;
 
 // Map parsing
@@ -59,9 +61,7 @@ void	move_player(t_game *game, int dx, int dy);
 void	free_game(t_game *game);
 void	error_exit(t_game *game, char *message);
 int		close_game(t_game *game);
-//int		flood_fill(char **map, int width, int height, t_point pos);
-//int		flood_fill(char **map, int width, int height, t_point start_pos);
-int		flood_fill(char **map, int width, int height, t_point start_pos,
-	int total_collectibles);
+int		flood_fill(char **map, t_game *game);
 void	init_game(t_game *game, char *map);
+char	**create_map_copy(char **map, int height);
 #endif
