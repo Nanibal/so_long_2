@@ -18,7 +18,8 @@ LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
 SRC_DIR = src
-SRC = main.c map_parser.c game.c graphics.c utils.c validate_map.c utils2.c
+SRC = main.c map_parser.c game.c graphics.c utils.c validate_map.c utils2.c \
+		clean.c
 OBJ_DIR = obj
 OBJ = $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
 

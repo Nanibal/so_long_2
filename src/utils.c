@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 #include "so_long.h"
 
-void	free_game(t_game *game)
+/* void	free_game(t_game *game)
 {
 	int	i;
 
@@ -24,7 +24,36 @@ void	free_game(t_game *game)
 	}
 	if (game->win)
 		mlx_destroy_window(game->mlx, game->win);
-}
+} */
+/* void	free_game(t_game *game)
+{
+	int	i;
+
+	i = 0;
+	if (game->map)
+	{
+		while (game->map[i])
+			free(game->map[i++]);
+		free(game->map);
+	}
+	if (game->wall)
+		mlx_destroy_image(game->mlx, game->wall);
+	if (game->floor)
+		mlx_destroy_image(game->mlx, game->floor);
+	if (game->player)
+		mlx_destroy_image(game->mlx, game->player);
+	if (game->collect)
+		mlx_destroy_image(game->mlx, game->collect);
+	if (game->exit)
+		mlx_destroy_image(game->mlx, game->exit);
+	if (game->win)
+		mlx_destroy_window(game->mlx, game->win);
+	if (game->mlx)
+	{
+		mlx_destroy_display(game->mlx);
+		free(game->mlx);
+	}
+} */
 
 void	error_exit(t_game *game, char *message)
 {
